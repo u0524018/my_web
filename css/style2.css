@@ -4,13 +4,14 @@ html,
 body {
     width: 100%;
     overflow-x: hidden;
-    margin: 0;
-    padding: 0;
+    -webkit-text-size-adjust: 100%; /* 防止移動版縮放導致的邊距問題 */
 }
 
 * {
     box-sizing: border-box;
     /* 讓 padding 不會增加元素的總寬度 */
+    margin: 0; /* 強制所有元素預設 margin 為 0 */
+    padding: 0; /* 強制所有元素預設 padding 為 0 */
 }
 
 .header {
@@ -183,6 +184,7 @@ body {
 /* 橫幅 */
 
 .hero-carousel {
+    display:block;
     position: relative;
     width: 100%;
     margin: 0;
