@@ -199,7 +199,7 @@ body {
 /* 個別 Slide 設定 */
 .carousel-slide {
     min-width: 100%;
-    height: 100%;
+    height: 90vh;
     background-size: cover;
     /* 圖片填滿 */
     background-position: center;
@@ -365,5 +365,6 @@ body {
     /* 淡淡的暖色調，像太陽光的感覺 */
     background: linear-gradient(180deg, #ffffff 0%, #fffcf5 100%);
 }
+
 
 
