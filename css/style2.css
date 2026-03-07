@@ -187,13 +187,15 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    height: 95hv;
+    height: 100%;
     /* 設定大圖高度 */
     overflow: hidden;
 }
 
 .carousel-track {
     display: flex;
+    margin: 0;
+    padding: 0;
     height: 100%;
     transition: transform 0.5s ease-in-out;
 }
@@ -201,7 +203,9 @@ body {
 /* 個別 Slide 設定 */
 .carousel-slide {
     min-width: 100%;
-    height: 90vh;
+    margin: 0;
+    padding: 0;
+    height: 95vh;
     background-size: cover;
     /* 圖片填滿 */
     background-position: center;
@@ -367,6 +371,7 @@ body {
     /* 淡淡的暖色調，像太陽光的感覺 */
     background: linear-gradient(180deg, #ffffff 0%, #fffcf5 100%);
 }
+
 
 
 
