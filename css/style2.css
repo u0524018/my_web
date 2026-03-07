@@ -187,7 +187,7 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: 95hv;
     /* 設定大圖高度 */
     overflow: hidden;
 }
@@ -367,6 +367,7 @@ body {
     /* 淡淡的暖色調，像太陽光的感覺 */
     background: linear-gradient(180deg, #ffffff 0%, #fffcf5 100%);
 }
+
 
 
 
