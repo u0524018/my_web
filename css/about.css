@@ -1,0 +1,185 @@
+ /* --- 1. 基礎佈局：確保選單與書本獨立 --- */
+ body {
+     margin: 0;
+     padding: 0;
+     font-family: "Microsoft JhengHei", sans-serif;
+     background-color: #d7ccc8;
+ }
+
+ .main-layout {
+     display: flex;
+     min-height: 100vh;
+ }
+
+ /* 左側導覽列 */
+ .side-menu {
+     width: 250px;
+     background: #fff;
+     padding: 40px 20px;
+     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+     z-index: 1000;
+ }
+
+ .menu-list {
+     list-style: none;
+     padding: 0;
+ }
+
+ .menu-item {
+     padding: 15px;
+     margin-bottom: 10px;
+     cursor: pointer;
+     border-radius: 8px;
+     transition: 0.3s;
+     color: #5d4037;
+ }
+
+ .menu-item:hover {
+     background: #fdfaf0;
+ }
+
+ .menu-item.active {
+     background: #8D7B68;
+     color: white;
+ }
+
+ /* 右側 3D 書本區域 */
+ .book-area {
+     flex: 1;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     perspective: 2000px;
+ }
+
+ .book-container {
+     width: 450px;
+     height: 600px;
+     position: relative;
+     transform-style: preserve-3d;
+     transition: transform 1s ease-in-out;
+ }
+
+ /* 關鍵：書翻開時向右移動，避免擋住左側 */
+ .book-container.is-open {
+     transform: translateX(200px);
+ }
+
+ /* --- 2. 頁面基礎設定 --- */
+ .book-page {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     transform-origin: left;
+     /* 使用 cubic-bezier 讓動作帶有一點點物理慣性 */
+     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+     transform-style: preserve-3d;
+ }
+
+ /* 1. 初始狀態增加過渡與陰影 */
+ .book-cover {
+     z-index: 100 !important;
+     cursor: pointer;
+     transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease;
+     box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.2);
+     /* 初始的小影子 */
+ }
+
+ /* 2. 懸停效果：微微抬升與傾斜 */
+ .book-cover:hover {
+     /* translateZ 讓書本垂直「浮」起來，rotateY 讓它微微翹起 */
+     transform: translateZ(20px) rotateY(-5deg);
+     box-shadow: 15px 25px 40px rgba(0, 0, 0, 0.3);
+     /* 影子變大變淡 */
+ }
+
+ /* 3. 當封面翻開後，取消 hover 效果（避免翻過去後還在跳） */
+ .book-cover.flipped:hover {
+     transform: rotateY(-180deg);
+     box-shadow: none;
+ }
+
+
+
+
+ /* 徹底解決看到背面字體的問題 */
+ .front,
+ .back,
+ .cover-front,
+ .cover-back {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     backface-visibility: hidden;
+     -webkit-backface-visibility: hidden;
+ }
+
+ .click-hint {
+     position: absolute;
+     bottom: 30px;
+     right: 30px;
+     font-size: 0.8rem;
+     color: #ad9b8d;
+     opacity: 0;
+     transition: opacity 0.3s;
+ }
+
+ .front:hover .click-hint {
+     opacity: 1;
+ }
+
+ /* 確保滑鼠游標是手型 */
+ .front {
+     cursor: pointer;
+ }
+
+
+ .back,
+ .cover-back {
+     transform: rotateY(180deg);
+ }
+
+ .flipped {
+     transform: rotateY(-180deg);
+ }
+
+ /* --- 3. 頁面細節：橫線與弧度 --- */
+ .page-inner {
+     width: 100%;
+     height: 100%;
+     background-color: #fffaf0;
+     background-image: linear-gradient(#e1e8ed 1px, transparent 1px);
+     background-size: 100% 30px;
+     padding: 40px;
+     box-sizing: border-box;
+     border: 1px solid #d5bdaf;
+     line-height: 30px;
+     box-shadow: inset 15px 0 30px rgba(0, 0, 0, 0.05);
+     /* 模擬對開弧度 */
+ }
+
+ /* 封面皮質感 */
+ .cover-front {
+     background: #8D7B68;
+     color: white;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border-radius: 0 10px 10px 0;
+     z-index: 2;
+ }
+
+ /* --- 4. 初始 Z-index --- */
+ #cover {
+     z-index: 100;
+ }
+
+ #p1 {
+     z-index: 90;
+ }
+
+ #p2 {
+     z-index: 80;
+ }

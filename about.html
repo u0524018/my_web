@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <title>動保社-關於我們</title>
+    <link rel="stylesheet" href="./css/about.css">
+    <script src="./js/about.js"></script>
+</head>
+
+<body>
+    <!--
+<div class="main-layout">
+    <nav class="side-menu">
+        <ul class="menu-list">
+            <li class="menu-item active" onclick="goCover()">回到封面</li>
+            <li class="menu-item" onclick="flipToPage(1)">流浪的開端</li>
+            <li class="menu-item" onclick="flipToPage(2)">兩難的僵局</li>
+        </ul>
+    </nav>
+
+    <main class="book-area">
+        <div class="book-container" id="book-container">
+            
+            <div class="book-page flip-page" id="p2">
+                <div class="front">
+                    <div class="page-inner">
+                        <h2>兩難的僵局</h2>
+                        <p>捕捉並非解決之道。親人的孩子走了，具攻擊性的卻留了下來...</p>
+                    </div>
+                </div>
+                <div class="back"><div class="page-inner"></div></div>
+            </div>
+
+            <div class="book-page flip-page" id="p1">
+                <div class="front">
+                    <div class="page-inner">
+                        <h2>流浪的開端</h2>
+                        <p>大學校園的開放，讓無家可歸的生命走了進來。善意有時造成了無形的傷害...</p>
+                    </div>
+                </div>
+                <div class="back"><div class="page-inner"></div></div>
+            </div>
+
+            <div class="book-page book-cover" id="cover" onclick="flipToPage(1)">
+                <div class="cover-front">
+                    <div style="text-align:center;">
+                        <h1>校園犬紀錄簿</h1>
+                        <p>🐾 點擊開啟故事</p>
+                    </div>
+                </div>
+                <div class="cover-back">
+                    <div class="page-inner"><h3>序言</h3><p>故事從這裡開始...</p></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+-->
+
+    <div class="main-layout">
+        <nav class="side-menu">
+            <ul class="menu-list">
+                <li class="menu-item active" onclick="goCover()">回到封面</li>
+                <li class="menu-item" onclick="flipToPage(1)">流浪的開端</li>
+                <li class="menu-item" onclick="flipToPage(2)">兩難的僵局</li>
+                <li class="menu-item" onclick="flipToPage(3)">帶著信念</li>
+            </ul>
+        </nav>
+
+        <main class="book-area">
+            <div class="book-container" id="book-container">
+
+
+                <div class="book-page book-cover" id="cover" onclick="flipToPage(1)">
+                    <div class="cover-front">
+                        <div class="cover-content">
+                            <h1>校園犬紀錄簿</h1>
+                            <p>🐾 點擊開啟故事</p>
+                        </div>
+                    </div>
+                    <div class="cover-back">
+                        <div class="page-inner">
+                            <h3>關於動保社</h3>
+                            <p>高科大動保社致力於校園浪犬的 TNVR 與照顧，這本書紀錄了我們的點滴...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-page flip-page" id="p1">
+                    <div class="front" onclick="flipToPage(2)">
+                        <div class="page-inner right-page">
+                            <h2>流浪的開端</h2>
+                            <p>大學校園的開放，讓許多生命在這裡交集...</p>
+                            <div class="click-hint">點擊翻開下一頁 ➔</div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="page-inner left-page">
+                            <p>這裡可以放更多關於「開端」的細節文字，或是狗狗的照片說明。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-page flip-page" id="p2">
+                    <div class="front" onclick="flipToPage(3)">
+                        <div class="page-inner">
+                            <h2>兩難的僵局</h2>
+                            <p>捕捉並非解決之道...</p>
+                            <div class="click-hint">下一頁 ➔</div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="page-inner"></div>
+                    </div>
+                </div>
+
+                <div class="book-page flip-page" id="p3">
+                    <div class="front" onclick="goCover()">
+                        <div class="page-inner">
+                            <h2>一同溫柔前行</h2>
+                            <p>正因如此，有一群學生選擇勇敢面對、積極籌組，
+                                他們用實際行動回應困境，用耐心與知識取代衝突與暴力，
+                                於是 ― 動物保護社誕生了。
+
+                                社團推動「結紮代替撲殺」、「不要隨意餵養浪犬」等理念，多次參訪收容所，向專業人士學習，建立正確動保知識。
+
+                                並開始：
+                                進行犬隻分類與族群管理
+                                鼓勵並協助民眾認養友善浪犬
+                                必要時驅離攻擊性或高風險犬隻
+                                建立負責、有制度的照護模式
+
+                                一步一步地，用更科學、更溫柔、更負責的方法，
+                                試著解決這個已困擾校園多年的問題。</p>
+
+                            <div class="click-hint">回封面 ➔</div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="page-inner"></div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>
