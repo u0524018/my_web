@@ -1,0 +1,90 @@
+/* 這裡幫你調整了 FB/IG 圖示的大小 */
+.social-icon {
+    width: 60px;      /* 從原本的 200px 改成正常的 40px */
+    height: 60px;     /* 保持比例 */
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1); /* 滑鼠移上去稍微放大，更有互動感 */
+}
+
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #4e342e; /* 深咖啡色，與故事書封面呼應 */
+    color: #fdf2e9;            /* 米白色文字，好閱讀 */
+    padding: 30px 0;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 0; /* 💡 確保底部沒有多餘外距 */
+    font-family: 'Noto Serif TC', serif;
+    box-sizing: border-box;
+}
+
+.footer__container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* 三個區塊平均分散 */
+    padding: 0 20px;
+    flex-wrap: wrap;               /* 手機版會自動換行 */
+}
+
+.footer__section {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+.footer__title {
+    color: #eaddd0;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-left: 3px solid #8d7b68;
+    padding-left: 10px;
+}
+
+.footer__text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #d7ccc8;
+}
+
+.footer__links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer__links li {
+    margin-bottom: 8px;
+}
+
+.footer__links a {
+    color: #d7ccc8;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer__links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer__bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 30px;
+    padding-top: 20px;
+    font-size: 0.85rem;
+    color: #a1887f;
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
