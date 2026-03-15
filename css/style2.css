@@ -6,10 +6,10 @@ html {
     min-height: 100%;
     width: 100%;
     overflow-x: hidden;
-    
+
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -57,6 +57,8 @@ body{
     padding: 0;
     height: 95vh;
     background-size: cover;
+    object-fit: cover;
+    object-position: center;
     /* 圖片填滿 */
     background-position: center;
     /* 圖片居中 */
@@ -268,4 +270,149 @@ body{
     padding: 100px 0;
     /* 淡淡的暖色調，像太陽光的感覺 */
     background: linear-gradient(180deg, #ffffff 0%, #fffcf5 100%);
+}
+
+
+/* --- 手機版 RWD 設定 (螢幕寬度小於 768px 時觸發) --- */
+@media (max-width: 768px) {
+
+    /* 1. 調整 Header 導覽列 */
+    .header__nav {
+        flex-direction: column;
+        /* 讓 Logo 與選單上下排列 */
+        height: auto;
+        padding: 10px;
+    }
+
+    .header__nav-list {
+        gap: 10px;
+        /* 縮小按鈕間距 */
+        margin-top: 10px;
+        flex-wrap: wrap;
+        /* 連結太多時自動換行 */
+        justify-content: center;
+    }
+
+    .prev,
+    .next,
+    .carousel-btn,
+    .banner-prev,
+    .banner-next {
+        display: none;
+    }
+
+    .carousel-slide {
+        min-width: 100vw;
+        /* 💡 每一張圖佔滿整個螢幕寬 */
+        scroll-snap-align: start;
+        flex-shrink: 0;
+    }
+
+    /* 2. 調整輪播圖 (Hero Carousel) 高度 */
+    .hero-carousel {
+        height: auto;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        /* 手機版不需要那麼高 */
+        -webkit-overflow-scrolling: touch;
+
+    }
+
+    .carousel-track {
+        display: flex;
+        width: auto;
+        transform: none;
+        /* 清除原本 JS 可能寫死的寬度 */
+    }
+
+    .carousel-slide {
+        min-width: 100vw;
+        scroll-snap-align: start;
+    }
+
+    /* 3. 調整中間文字區塊 */
+    .section-header {
+        padding: 60px 20px;
+        /* 縮小上下內距，增加左右邊距 */
+    }
+
+    .section-header h1 {
+        font-size: 1.8rem;
+        /* 標題變小一點，才不會斷字 */
+    }
+
+    /* 5. Footer 改為垂直堆疊 */
+    .footer__container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer__section {
+        margin-bottom: 30px;
+        min-width: 100%;
+    }
+
+    .dog-viewport {
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+    }
+
+    /* 1. 讓包裹容器顯示一格 */
+    .dog-carousel-wrapper {
+        display: block;
+
+        width: 100%;
+        /* 佔滿螢幕寬度 */
+        overflow: visible;
+        /* 確保多出來的狗不會露出來 */
+        padding: 0 10px;
+        /* 留一點點邊距，不要貼死螢幕 */
+        overflow-x: auto;
+        /* 💡 允許左右滑動 */
+        scroll-snap-type: x mandatory;
+        /* 💡 啟動自動對齊功能 */
+        scroll-behavior: smooth;
+        /* 💡 讓滑動更平滑 */
+        display: flex;
+        -webkit-overflow-scrolling: touch;
+        /* 讓 iOS 滑動更順暢 */
+        gap: 0;
+    }
+
+    /* 2. 調整軌道，確保 flex 佈局正確 */
+    .dog-track {
+        display: flex;
+        transform: none;
+        width: auto;
+        gap: 0;
+        /* 手機版可以取消間距，讓一格就是一格 */
+    }
+
+    /* 3. 核心：讓每張卡片強行變成「一格」的寬度 */
+    .dog-card {
+        min-width: 100%;
+        flex: 0 0 100%;
+        /* 💡 這是重點：讓一張卡片就等於容器的 100% 寬 */
+        scroll-snap-align: start;
+        flex-shrink: 0;
+        box-sizing: border-box;
+        padding: 0 20px;
+        /* 讓狗狗照片跟文字不要貼到螢幕邊緣 */
+    }
+
+    /* 4. 縮小標題文字，避免在手機上斷行太醜 */
+    .section-header h1 {
+        font-size: 1.5rem;
+        padding: 0 20px;
+    }
+
+    .nav-btn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .hero-carousel::-webkit-scrollbar,
+    .dog-carousel-wrapper::-webkit-scrollbar {
+        display: none;
+    }
 }
