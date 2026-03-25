@@ -11,21 +11,25 @@
  }
 
 
-html {
-    width: 100%;
-    overflow-x: hidden;
-    -webkit-text-size-adjust: 100%;
-    /* 防止移動版縮放導致的邊距問題 */
-    
-}
-* {
-    box-sizing: border-box;
-    /* 讓 padding 不會增加元素的總寬度 */
-    margin: 0;
-    /* 強制所有元素預設 margin 為 0 */
-    padding: 0;
-    /* 強制所有元素預設 padding 為 0 */
-}
+ html {
+     width: 100%;
+     overflow-x: hidden;
+     -webkit-text-size-adjust: 100%;
+     /* 防止移動版縮放導致的邊距問題 */
+
+     scroll-behavior: smooth;
+     scroll-padding-top: 80px;
+
+ }
+
+ * {
+     box-sizing: border-box;
+     /* 讓 padding 不會增加元素的總寬度 */
+     margin: 0;
+     /* 強制所有元素預設 margin 為 0 */
+     padding: 0;
+     /* 強制所有元素預設 padding 為 0 */
+ }
 
  body {
      background: #eaddd0;
@@ -53,7 +57,7 @@ html {
 
  /* 側邊導覽 - 階層樣式 */
  .sidebar {
-    
+
      width: 220px;
      padding: 40px 20px;
      background: rgba(0, 0, 0, 0.05);
@@ -225,4 +229,109 @@ html {
      /* 微微旋轉，增加手寫隨性感 */
      filter: sepia(0.2);
      /* 統一色調，與米色紙張更搭 */
+ }
+
+ .mobile-menu-btn {
+     display: none;
+ }
+
+ @media (max-width: 768px) {
+
+     /* 1. 懸浮按鈕樣式 */
+     .mobile-menu-btn {
+         display: flex;
+         position: fixed;
+         bottom: 25px;
+         right: 25px;
+         width: 55px;
+         height: 55px;
+         background-color: #8d7b68;
+         color: white;
+         border-radius: 50%;
+         z-index: 10000;
+         justify-content: center;
+         align-items: center;
+         font-size: 22px;
+         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+         cursor: pointer;
+     }
+
+     /* 2. 將原本的 sidebar 轉變為手機版抽屜選單 */
+     .sidebar#sidebarContainer {
+         display: block !important;
+         position: fixed !important;
+         top: 0;
+         right: -100%;
+         /* 預設隱藏在右側 */
+         width: 75% !important;
+         height: 100vh !important;
+         background: #fffaf0 !important;
+         z-index: 9999;
+         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+         padding: 90px 25px 25px 25px !important;
+         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+         overflow-y: auto;
+     }
+
+     .sidebar#sidebarContainer.is-active {
+         right: 0;
+         /* 展開選單 */
+     }
+
+     .sidebar-title {
+         font-size: 1.4rem;
+         margin-bottom: 20px;
+         border-bottom: 2px solid #eaddd0;
+         padding-bottom: 10px;
+     }
+
+     /* 3. 修正原本 JS 生成的 nav-link 樣式 */
+     .nav-link {
+         display: block !important;
+         width: 100% !important;
+         margin-bottom: 12px !important;
+         padding: 15px !important;
+         background: #fff !important;
+         border-radius: 10px !important;
+         text-align: left !important;
+         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+         color: #5d4037 !important;
+         text-decoration: none;
+     }
+
+     /* 4. 徹底解開書本限制，改為垂直排列 */
+     .stage {
+         padding: 10px !important;
+         perspective: none !important;
+     }
+
+     #book {
+         width: 100% !important;
+         height: auto !important;
+         transform: none !important;
+         display: flex !important;
+         flex-direction: column !important;
+         gap: 30px !important;
+     }
+
+     .leaf {
+         position: relative !important;
+         width: 100% !important;
+         height: auto !important;
+         transform: none !important;
+         z-index: 1 !important;
+     }
+
+     .p-front,
+     .p-back {
+         position: relative !important;
+         width: 100% !important;
+         height: auto !important;
+         transform: none !important;
+         backface-visibility: visible !important;
+         padding: 25px !important;
+         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+         background-color: #ffffff !important;
+         border-radius: 12px !important;
+     }
  }

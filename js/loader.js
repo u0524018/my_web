@@ -1,3 +1,37 @@
+async function loadLayout() {
+    // 1. 同時載入 Header 和 Footer
+    const [headerRes, footerRes] = await Promise.all([
+        fetch('./components/header.html'),
+        fetch('./components/footer.html')
+    ]);
+
+    const headerHTML = await headerRes.text();
+    const footerHTML = await footerRes.text();
+
+    // 2. 塞進頁面
+    if (document.getElementById('header-placeholder')) {
+        document.getElementById('header-placeholder').innerHTML = headerHTML;
+    }
+    if (document.getElementById('footer-placeholder')) {
+        document.getElementById('footer-placeholder').innerHTML = footerHTML;
+    }
+
+    // 💡 關鍵：載入完後才執行 Header 的 JS 邏輯（如手機版選單）
+    initHeaderJS();
+}
+
+function initHeaderJS() {
+    const menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            document.querySelector('.header__nav-list').classList.toggle('active');
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', loadLayout);
+
+
 window.addEventListener('scroll', function () {
     const header = document.querySelector('.header');
     if (window.innerWidth > 768) {
