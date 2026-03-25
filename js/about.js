@@ -95,10 +95,10 @@ function init() {
     const menu = document.getElementById('menu');
     //const paginatedList = paginateData(rawDogData, 275); // 測試用，設小一點容易看到分頁
     if (window.innerWidth <= 768) {
-         paginatedList = paginateData(rawDogData, 500);
+        paginatedList = paginateData(rawDogData, 500);
     }
     else {
-         paginatedList = paginateData(rawDogData, 275);
+        paginatedList = paginateData(rawDogData, 275);
     }
     // 1. Leaf 0 (封面)
     addLeaf(book, "封面",
@@ -126,12 +126,18 @@ function init() {
     updateUI(0);
 
     book.addEventListener('wheel', (e) => {
+        e.preventDefault();
+
         if (isTransitioning) return;
-        if (e.deltaY > 0) jump(currentPage + 1);
-        else jump(currentPage - 1);
+
+        if (e.deltaY > 0) 
+            jump(currentPage + 1);
+        else 
+            jump(currentPage - 1);
+
         isTransitioning = true;
         setTimeout(() => isTransitioning = false, 800);
-    });
+    }, { passive: false });
 }
 
 function addLeaf(parent, title, frontHTML, backHTML, isCover, isLast, isSub) {
