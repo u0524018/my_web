@@ -64,6 +64,7 @@ const rawDogData = [
 let currentPage = 0;
 let totalPages = 0;
 let isTransitioning = false;
+let resizeTimer;
 
 // 🧠 分頁處理：增加 isSub 標記
 function paginateData(data, limit = 275) {
@@ -94,6 +95,7 @@ function init() {
     const book = document.getElementById('book');
     const menu = document.getElementById('menu');
     //const paginatedList = paginateData(rawDogData, 275); // 測試用，設小一點容易看到分頁
+
     if (window.innerWidth <= 768) {
         paginatedList = paginateData(rawDogData, 500);
     }
@@ -126,13 +128,17 @@ function init() {
     updateUI(0);
 
     book.addEventListener('wheel', (e) => {
-        e.preventDefault();
 
+        if (window.innerWidth <= 768) {
+            return; // 手機版直接跳出，交給瀏覽器原生捲動
+        }
+
+        e.preventDefault();
         if (isTransitioning) return;
 
-        if (e.deltaY > 0) 
+        if (e.deltaY > 0)
             jump(currentPage + 1);
-        else 
+        else
             jump(currentPage - 1);
 
         isTransitioning = true;
@@ -163,6 +169,7 @@ function addLeaf(parent, title, frontHTML, backHTML, isCover, isLast, isSub) {
 
 function jump(index) {
     if (index < 0 || index > totalPages) return;
+    if (window.innerWidth <= 768) return;
     currentPage = index;
     const book = document.getElementById('book');
     const leaves = document.querySelectorAll('.leaf');
@@ -183,7 +190,27 @@ function updateUI(index) {
 document.addEventListener('DOMContentLoaded', init);
 
 
+//修改解析度時動作
+window.addEventListener('resize', () => {
+    // 💡 使用 debounce 技術，防止縮放時每秒執行幾百次導致電腦卡頓
+    const book = document.getElementById('book');
+    const menu = document.getElementById('menu');
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        console.log("偵測到解析度改變，重新初始化...");
+        menu.innerHTML = '';
+        book.innerHTML = '';
+        // 1. 重新抓取當前的螢幕寬度判斷
+        // 2. 重新計算書本高度或重置 3D 狀態
+        init();
 
+        //手機版的若是原先書本處於開啟狀態整個畫面會跑掉 故去掉開啟狀態的class
+        if (window.innerWidth <= 768) {
+            book.classList.remove('is-open');
+            //book.onclick = null;
+        };
+    }, 100);
+});
 
 // about.js 底部修正
 
@@ -210,8 +237,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // 如果在手機版點擊，因為是垂直排列，我們可以滾動到對應頁面
                 if (window.innerWidth <= 768) {
+                    
                     const index = e.target.id.replace('link-', '');
                     const targetLeaf = document.querySelectorAll('.leaf')[index];
+                    
+                    const active = document.getElementById(`link-${index}`);
+                    //搜尋所有帶有nav-link的class 並將所有目錄的active取消
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+
+                    
+                    //將點擊的選項加上active
+                    if (active) active.classList.add('active');
+
+
+
                     if (targetLeaf) {
                         targetLeaf.scrollIntoView({ behavior: 'smooth' });
                     }
