@@ -1,25 +1,22 @@
-* 選單 */
-
-/* 導覽列整體樣式 */
+ @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap');
+ 
 html {
-    background-color: #F5EBE0;
     min-height: 100%;
     width: 100%;
     overflow-x: hidden;
-
+    box-sizing: border-box;
 }
 
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #F5EBE0;
+    background-color: #eaddd0;
+    font-family: 'Noto Serif TC', serif;
     color: #4A4A4A;
 }
-
-
 * {
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     /* 讓 padding 不會增加元素的總寬度 */
     margin: 0;
     /* 強制所有元素預設 margin 為 0 */

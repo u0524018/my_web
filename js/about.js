@@ -197,17 +197,22 @@ window.addEventListener('resize', () => {
     const menu = document.getElementById('menu');
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-        console.log("偵測到解析度改變，重新初始化...");
-        menu.innerHTML = '';
-        book.innerHTML = '';
-        // 1. 重新抓取當前的螢幕寬度判斷
-        // 2. 重新計算書本高度或重置 3D 狀態
-        init();
+
+        if (book.className == 'is-open') {
+
+        }
+        else {
+            menu.innerHTML = '';
+            book.innerHTML = '';
+            // 1. 重新抓取當前的螢幕寬度判斷
+            // 2. 重新計算書本高度或重置 3D 狀態
+            init();
+        }
+
 
         //手機版的若是原先書本處於開啟狀態整個畫面會跑掉 故去掉開啟狀態的class
         if (window.innerWidth <= 768) {
             book.classList.remove('is-open');
-            //book.onclick = null;
         };
     }, 100);
 });
@@ -237,15 +242,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // 如果在手機版點擊，因為是垂直排列，我們可以滾動到對應頁面
                 if (window.innerWidth <= 768) {
-                    
+
                     const index = e.target.id.replace('link-', '');
                     const targetLeaf = document.querySelectorAll('.leaf')[index];
-                    
+
                     const active = document.getElementById(`link-${index}`);
                     //搜尋所有帶有nav-link的class 並將所有目錄的active取消
                     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
 
-                    
+
                     //將點擊的選項加上active
                     if (active) active.classList.add('active');
 
